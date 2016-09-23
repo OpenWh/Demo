@@ -1,8 +1,0 @@
-D:\工作相关\项目\DiskService\DiskService\bin\Debug\DiskService.exe.config
-D:\工作相关\项目\DiskService\DiskService\bin\Debug\DiskService.exe
-D:\工作相关\项目\DiskService\DiskService\bin\Debug\DiskService.pdb
-D:\工作相关\项目\DiskService\DiskService\obj\Debug\DiskService.csprojResolveAssemblyReference.cache
-D:\工作相关\项目\DiskService\DiskService\obj\Debug\DiskService.ProjectInstaller.resources
-D:\工作相关\项目\DiskService\DiskService\obj\Debug\DiskService.csproj.GenerateResource.Cache
-D:\工作相关\项目\DiskService\DiskService\obj\Debug\DiskService.exe
-D:\工作相关\项目\DiskService\DiskService\obj\Debug\DiskService.pdb

@@ -1,5 +1,0 @@
-D:\工作相关\项目\WinIOBeep\WinIOBeep\bin\x86\Debug\WinIOBeep.exe.config
-D:\工作相关\项目\WinIOBeep\WinIOBeep\bin\x86\Debug\WinIOBeep.exe
-D:\工作相关\项目\WinIOBeep\WinIOBeep\bin\x86\Debug\WinIOBeep.pdb
-D:\工作相关\项目\WinIOBeep\WinIOBeep\obj\x86\Debug\WinIOBeep.exe
-D:\工作相关\项目\WinIOBeep\WinIOBeep\obj\x86\Debug\WinIOBeep.pdb
