@@ -1,0 +1,5 @@
+D:\工作相关\项目\WinIOBeep\WinIOBeep\bin\Release\WinIOBeep.exe.config
+D:\工作相关\项目\WinIOBeep\WinIOBeep\bin\Release\WinIOBeep.exe
+D:\工作相关\项目\WinIOBeep\WinIOBeep\bin\Release\WinIOBeep.pdb
+D:\工作相关\项目\WinIOBeep\WinIOBeep\obj\Release\WinIOBeep.exe
+D:\工作相关\项目\WinIOBeep\WinIOBeep\obj\Release\WinIOBeep.pdb

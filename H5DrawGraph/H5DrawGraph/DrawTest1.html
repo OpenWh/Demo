@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <canvas id="myCanvas" width="700" height="500" style="border: 1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+    </canvas>
+    <div id="show">
+    </div>
+    <input type="button" onclick="drawCube();" value="开始画立方体" tyle="width: 135px" />
+    <script type="text/javascript">
+        var c = document.getElementById("myCanvas");
+        var cxt = c.getContext("2d");
+        cxt.lineWidth = 3;
+        //正方体8个顶点
+        var Point = new Array();
+        Point[0] = { x: 100, y: 100, z: 100 };
+        Point[1] = { x: 100, y: 100, z: -100 };
+        Point[2] = { x: -100, y: 100, z: -100 };
+        Point[3] = { x: -100, y: 100, z: 100 };
+        Point[4] = { x: 100, y: -100, z: 100 };
+        Point[5] = { x: 100, y: -100, z: -100 };
+        Point[6] = { x: -100, y: -100, z: -100 };
+        Point[7] = { x: -100, y: -100, z: 100 };
+        var startX = 250;
+        var startY = 250;
+        //摄像机到显示屏的距离
+        var distance = 500;
+        //摄像机位置
+        var eyePosition = { x: 0, y: 0, z: 700 };
+        function changeDistance() {
+            for (var i = 0; i < Point.length; i++) {
+                Point[i].x = Point[i].x * distance / Math.abs(eyePosition.z - Point[i].z);
+                Point[i].y = Point[i].y * distance / Math.abs(eyePosition.z - Point[i].z);
+            }
+        }
+        var drawCube = function () {
+            changeDistance();
+            cxt.beginPath();
+            cxt.moveTo(startX + Point[0].x, startY - Point[0].y);
+            cxt.lineTo(startX + Point[1].x, startY - Point[1].y);
+            cxt.lineTo(startX + Point[2].x, startY - Point[2].y);
+            cxt.lineTo(startX + Point[3].x, startY - Point[3].y);
+            cxt.lineTo(startX + Point[0].x, startY - Point[0].y);
+            cxt.moveTo(startX + Point[4].x, startY - Point[4].y);
+            cxt.lineTo(startX + Point[5].x, startY - Point[5].y);
+            cxt.lineTo(startX + Point[6].x, startY - Point[6].y);
+            cxt.lineTo(startX + Point[7].x, startY - Point[7].y);
+            cxt.lineTo(startX + Point[4].x, startY - Point[4].y);
+            cxt.moveTo(startX + Point[1].x, startY - Point[1].y);
+            cxt.lineTo(startX + Point[5].x, startY - Point[5].y);
+            cxt.moveTo(startX + Point[0].x, startY - Point[0].y);
+            cxt.lineTo(startX + Point[4].x, startY - Point[4].y);
+            cxt.moveTo(startX + Point[2].x, startY - Point[2].y);
+            cxt.lineTo(startX + Point[6].x, startY - Point[6].y);
+            cxt.moveTo(startX + Point[3].x, startY - Point[3].y);
+            cxt.lineTo(startX + Point[7].x, startY - Point[7].y);
+            cxt.stroke();
+        }
+    </script>
+</body>
+</html>
