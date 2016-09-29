@@ -11,6 +11,16 @@ DrawGraphics.Coordinate = {
 }
 
 DrawGraphics.DrawTools = {
+    drawConnectLine: function (myCanvas, cxt, nowcoordinate, nextcoordinate) {
+        if (nowcoordinate !== undefined && nextcoordinate != undefined) {
+            if (nowcoordinate !== nextcoordinate) {
+                cxt.beginPath();
+                cxt.moveTo(nowcoordinate._x, nowcoordinate._y);
+                cxt.lineTo(nextcoordinate._x, nextcoordinate._y);
+                cxt.stroke();
+            }
+        }
+    },
     drawLine: function (myCanvas, cxt, coordinate1, coordinate2) {
         if (coordinate1 !== null && coordinate2 != null) {
             cxt.beginPath();
@@ -45,6 +55,24 @@ window.onload = function () {
             MouseDownToUp(this.getAttribute("tag"), myCanvas, cxt, coordinate1, coordinate2);
         }
     });
+
+    document.getElementById("ConnectLineCheckBox").onclick = function () {
+        myCanvas.onmousedown = null;
+        myCanvas.onmouseup = null;
+        if (this.checked) {
+            MouseDown(this.getAttribute("tag"), myCanvas, cxt, coordinate1);
+        }
+    }
+}
+
+function MouseDown(method, myCanvas, cxt, coordinate1) {
+    var addCoordinate = DrawGraphics.Coordinate.createCoordinate;
+    var nowcoordinate;
+    myCanvas.onmousedown = function (e) {
+        nextcoordinate = addCoordinate(e.pageX, e.pageY);
+        DrawGraphics.DrawTools.drawConnectLine(myCanvas, cxt, nowcoordinate, nextcoordinate);
+        nowcoordinate = nextcoordinate;
+    }
 }
 
 function MouseDownToUp(method, myCanvas, cxt, coordinate1, coordinate2) {
