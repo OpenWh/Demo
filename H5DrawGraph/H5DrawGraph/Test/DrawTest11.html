@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <script type="text/javascript">
+        var showinfo = function () {
+            return showinfo.prototype.init();
+        }
+        showinfo.prototype = {
+            a: "啊哦",
+            init: function () {
+                return this;
+            },
+        }//this:showinfo.prototype.init
+
+        alert(showinfo().a);
+        //showinfo.prototype.init.prototype = showinfo.prototype;
+    </script>
+</body>
+</html>

@@ -26,7 +26,7 @@ D:\工作相关\项目\H5DrawGraph\H5DrawGraph\bin\Microsoft.AI.Web.xml
 D:\工作相关\项目\H5DrawGraph\H5DrawGraph\bin\Microsoft.AI.WindowsServer.xml
 D:\工作相关\项目\H5DrawGraph\H5DrawGraph\bin\Microsoft.ApplicationInsights.xml
 D:\工作相关\项目\H5DrawGraph\H5DrawGraph\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\工作相关\项目\H5DrawGraph\H5DrawGraph\obj\Debug\H5DrawGraph.csprojResolveAssemblyReference.cache
 D:\工作相关\项目\H5DrawGraph\H5DrawGraph\obj\Debug\H5DrawGraph.dll
 D:\工作相关\项目\H5DrawGraph\H5DrawGraph\obj\Debug\H5DrawGraph.pdb
 D:\工作相关\项目\H5DrawGraph\H5DrawGraph\bin\H5DrawGraph.dll.config
+D:\工作相关\项目\H5DrawGraph\H5DrawGraph\obj\Debug\H5DrawGraph.csprojResolveAssemblyReference.cache

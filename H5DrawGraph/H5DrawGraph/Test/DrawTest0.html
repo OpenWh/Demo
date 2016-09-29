@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <canvas id="myCanvas" width="700" height="500" style="border: 1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+    </canvas>
+    <script type="text/javascript">
+        window.onload = function(){
+            var canvas = document.getElementById("myCanvas");
+            if (canvas == null) {
+                return false;
+            }
+            var context = canvas.getContext('2d');
+            context.beginPath();
+            context.arc(200, 150, 100, 0, Math.PI * 2, true);
+            //不关闭路径路径会一直保留下去，当然也可以利用这个特点做出意想不到的效果
+            context.closePath();
+            context.fillStyle = 'rgba(0,255,0,0.25)';
+            context.fill();
+        };
+    </script>
+</body>
+</html>

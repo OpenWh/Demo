@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <canvas id="myCanvas" width="700" height="500" style="border: 1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+    </canvas>
+    <script type="text/javascript">
+        window.onload = function () {
+            var canvas = document.getElementById("myCanvas");
+            if (canvas == null) {
+                return false;
+            }
+            var context = canvas.getContext('2d');
+            var n = 0;
+
+            //左侧1/4圆弧
+            //context.beginPath();
+            context.arc(100, 150, 50, 0, Math.PI / 2, false);
+            context.fillStyle = 'rgba(255,0,0,0.25)';
+            context.fill();
+            context.strokeStyle = 'rgba(255,0,0,0.25)'
+            //context.closePath();
+            context.stroke();
+
+            //右侧1/4圆弧
+            //context.beginPath();
+            context.arc(300, 150, 50, 0, Math.PI / 2, false);
+            context.fillStyle = 'rgba(255,0,0,0.25)';
+            context.fill();
+            context.strokeStyle = 'rgba(255,0,0,0.25)';
+            //context.closePath();
+            context.stroke();
+        };
+    </script>
+</body>
+</html>

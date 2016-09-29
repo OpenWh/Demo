@@ -1,11 +1,6 @@
-﻿var drawGraphics = function () {
-    return new drawGraphics.prototype.init();
-}
+﻿var DrawGraphics = {};
 
-drawGraphics.prototype = {
-    init: function () {
-        return this;
-    },
+DrawGraphics.Coordinate = {
     createCoordinate: function (x, y) {
         var coordinate = {
             _x: x,
@@ -13,40 +8,59 @@ drawGraphics.prototype = {
         }
         return coordinate;
     },
+}
+
+DrawGraphics.DrawTools = {
     drawLine: function (myCanvas, cxt, coordinate1, coordinate2) {
-        cxt.beginPath();
-        cxt.moveTo(coordinate1._x, coordinate1._y);
-        cxt.lineTo(coordinate2._x, coordinate2._y);
-        cxt.stroke();
+        if (coordinate1 !== null && coordinate2 != null) {
+            cxt.beginPath();
+            cxt.moveTo(coordinate1._x, coordinate1._y);
+            cxt.lineTo(coordinate2._x, coordinate2._y);
+            cxt.stroke();
+        }
+    },
+    drawRect: function (myCanvas, cxt, coordinate1, coordinate2) {
+        if (coordinate1 !== null && coordinate2 != null && coordinate1._x != coordinate2._x && coordinate1._y != coordinate2._y) {
+            cxt.beginPath();
+            cxt.rect(coordinate1._x, coordinate1._y, coordinate2._x - coordinate1._x, coordinate2._y - coordinate1._y);
+            cxt.stroke();
+        }
     }
 }
 
-drawGraphics.prototype.init.prototype = drawGraphics.prototype;
-
-function drawLine(select, cxt, coordinate1, coordinate2) {
-    drawGraphics().drawLine(myCanvas, cxt, coordinate1, coordinate2);
-}
-
-$(function () {
+window.onload = function () {
     var myCanvas = document.getElementById("myCanvas");
-    var cxt = myCanvas.getContext("2d")
+    var cxt = myCanvas.getContext("2d");
     var coordinate1 = null;
     var coordinate2 = null;
-    var isFirst = true;
-    //$("#drawLinebBtn").click(function () {
-    //    var coordinate1 = drawGraphics().createCoordinate(20, 20);
-    //    var coordinate2 = drawGraphics().createCoordinate(30, 30);
-    //    drawLine(myCanvas, coordinate1, coordinate2);
-    //});
+    var method = "drawLine";
 
-    $("#myCanvas").mousedown(function (e) {
-        coordinate1 = drawGraphics().createCoordinate(e.pageX, e.pageY);
+    document.getElementById("LineCheckBox").setAttribute("checked", "checked");
+    MouseDownToUp(method, myCanvas, cxt, coordinate1, coordinate2);
+
+    $(".drawTools").click(function () {
+        myCanvas.onmousedown = null;
+        myCanvas.onmouseup = null;
+        if (this.checked) {
+            MouseDownToUp(this.getAttribute("tag"), myCanvas, cxt, coordinate1, coordinate2);
+        }
     });
+}
 
-    $("#myCanvas").mouseup(function (e) {
-        coordinate2 = drawGraphics().createCoordinate(e.pageX, e.pageY);
-        drawLine(myCanvas, cxt, coordinate1, coordinate2);
-    });
-});
-
-
+function MouseDownToUp(method, myCanvas, cxt, coordinate1, coordinate2) {
+    var addCoordinate = DrawGraphics.Coordinate.createCoordinate;
+    myCanvas.onmousedown = function (e) {
+        coordinate1 = addCoordinate(e.pageX, e.pageY);
+    }
+    myCanvas.onmouseup = function (e) {
+        coordinate2 = addCoordinate(e.pageX, e.pageY);
+        switch (method) {
+            case "drawLine":
+                DrawGraphics.DrawTools.drawLine(myCanvas, cxt, coordinate1, coordinate2);
+                break;
+            case "drawRect":
+                DrawGraphics.DrawTools.drawRect(myCanvas, cxt, coordinate1, coordinate2);
+                break;
+        }
+    }
+}

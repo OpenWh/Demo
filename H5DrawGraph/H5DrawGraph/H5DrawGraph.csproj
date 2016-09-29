@@ -98,10 +98,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Javascript\DrawGraphics.js" />
-    <Content Include="DrawTest1.html" />
-    <Content Include="DrawTest2.html" />
-    <Content Include="HtmlPageText1.html" />
+    <Content Include="Javascript\Reference.js" />
+    <Content Include="Test\DrawTest01.html" />
+    <Content Include="Test\DrawTest10.html" />
+    <Content Include="Test\DrawTest02.html" />
     <Content Include="Javascript\Jquery.js" />
+    <Content Include="Test\DrawTest03.html" />
+    <Content Include="Test\DrawTest0.html" />
+    <Content Include="Test\DrawTest05.html" />
+    <Content Include="Test\DrawTest06.html" />
+    <Content Include="Test\DrawTest07.html" />
+    <Content Include="Test\DrawTest08.html" />
+    <Content Include="Test\DrawTest09.html" />
+    <Content Include="Test\DrawTest11.html" />
     <Content Include="web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
