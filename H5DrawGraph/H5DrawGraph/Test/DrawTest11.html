@@ -6,16 +6,36 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <label id="l" style="position:absolute">啊哦额</label>
+    <input id="Button1" type="button" value="button" />
     <script type="text/javascript">
         window.onload = function () {
-            var l = document.get
-            l.gete = 100;
-            l.offsetTop = 100;
-            //var jql = $("#l");
-            //jql.css("left", "100px");
+            var btn1 = document.getElementById("Button1");
+            if(window.attachEvent)
+            {
+                btn1.attachEvent("click", function () {
+                    alert("我是临时工");
+                });
+                btn1.attachEvent("click", function () {
+                    alert("我是二代临时工");
+                });
+            }
+            else{
+                btn1.addEventListener("click", function () {
+                    alert("我是临时工");
+                });
+                btn1.addEventListener("click", function () {
+                    alert("我是二代临时工");
+                });
+            }
+            btn1.onclick = function () {
+                alert("我是临时工");
+            }
+            btn1.onclick = function () {
+                alert("我是临时工");
+            }
         }
     </script>
     <script src="../Javascript/Jquery.js"></script>
 </body>
+
 </html>

@@ -99,6 +99,8 @@
   <ItemGroup>
     <Content Include="Javascript\DrawGraphics.js" />
     <Content Include="Javascript\Reference.js" />
+    <Content Include="Javascript\three.js" />
+    <Content Include="Javascript\three.min.js" />
     <Content Include="Test\DrawTest01.html" />
     <Content Include="Test\DrawTest10.html" />
     <Content Include="Test\DrawTest02.html" />
@@ -111,13 +113,6 @@
     <Content Include="Test\DrawTest08.html" />
     <Content Include="Test\DrawTest09.html" />
     <Content Include="Test\DrawTest11.html" />
-    <Content Include="web.config" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

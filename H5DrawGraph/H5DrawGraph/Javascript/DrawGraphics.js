@@ -116,5 +116,8 @@ function MouseDownToUp(method, myCanvas, cxt, coordinate1, coordinate2) {
                 DrawGraphics.DrawTools.drawRect(myCanvas, cxt, coordinate1, coordinate2);
                 break;
         }
+    },
+    myCanvas.onmousemove = function (e) {
+        alert("a");
     }
 }
