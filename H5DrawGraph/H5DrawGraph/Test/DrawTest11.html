@@ -8,32 +8,22 @@
 <body>
     <input id="Button1" type="button" value="button" />
     <script type="text/javascript">
-        window.onload = function () {
-            var btn1 = document.getElementById("Button1");
-            if(window.attachEvent)
-            {
-                btn1.attachEvent("click", function () {
-                    alert("我是临时工");
-                });
-                btn1.attachEvent("click", function () {
-                    alert("我是二代临时工");
-                });
+        var Cat = {
+
+            createNew: function () {
+
+                var cat = {};
+
+                cat.name = "lala"
+
+                cat.age=18
+
+                return cat;
+
             }
-            else{
-                btn1.addEventListener("click", function () {
-                    alert("我是临时工");
-                });
-                btn1.addEventListener("click", function () {
-                    alert("我是二代临时工");
-                });
-            }
-            btn1.onclick = function () {
-                alert("我是临时工");
-            }
-            btn1.onclick = function () {
-                alert("我是临时工");
-            }
-        }
+
+        };
+        var cat1 = Cat.createNew();
     </script>
     <script src="../Javascript/Jquery.js"></script>
 </body>

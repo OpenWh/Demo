@@ -42,7 +42,6 @@ D:\Git\H5DrawGraph\H5DrawGraph\bin\roslyn\System.Reflection.Metadata.dll
 D:\Git\H5DrawGraph\H5DrawGraph\bin\roslyn\vbc.exe
 D:\Git\H5DrawGraph\H5DrawGraph\bin\roslyn\VBCSCompiler.exe
 D:\Git\H5DrawGraph\H5DrawGraph\bin\roslyn\VBCSCompiler.exe.config
-D:\Git\H5DrawGraph\H5DrawGraph\bin\H5DrawGraph.dll.config
 D:\Git\H5DrawGraph\H5DrawGraph\bin\H5DrawGraph.dll
 D:\Git\H5DrawGraph\H5DrawGraph\bin\H5DrawGraph.pdb
 D:\Git\H5DrawGraph\H5DrawGraph\bin\Microsoft.AI.Agent.Intercept.dll
