@@ -337,6 +337,7 @@
     <Content Include="CesiumUnminified\Workers\transferTypedArrayTest.js" />
     <Content Include="CesiumUnminified\Workers\upsampleQuantizedTerrainMesh.js" />
     <Content Include="GeometryTest1.html" />
+    <Content Include="GeometryTest2.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

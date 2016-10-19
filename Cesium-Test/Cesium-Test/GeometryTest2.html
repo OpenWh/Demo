@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="CesiumUnminified/Widgets/widgets.css" rel="stylesheet" />
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <script src="CesiumUnminified/Cesium.js"></script>
+    <div id="cesiumContainer"></div>
+    <script>
+        var extent = Cesium.Rectangle.fromDegrees(-98, 30, -90, 39);
+        Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
+        Cesium.Camera.DEFAULT_VIEW_FACTOR = 0.5;
+
+        var viewer = new Cesium.Viewer('cesiumContainer', {
+            navigationHelpButton: false,
+            animation: false,
+            timeline: false
+        });
+
+        var mypositions = Cesium.Cartesian3.fromDegreesArrayHeights([
+          // Triangle A
+          -90.6714, 35.9641, 322.543,
+          -97.6717, 38.9642, 325.51,
+          -97.6717, 35.9639, 324.724,
+          // Triangle B
+          -94.6717, 30.9639, 324.717,
+          -90.6717, 32.9639, 324.724,
+          -94.6717, 34.9639, 324.719]);
+
+        // unroll 'mypositions' into a flat array here
+        var numPositions = mypositions.length;
+
+        var pos = new Float64Array(numPositions * 3);
+        var normals = new Float32Array(numPositions * 3);
+        for (var i = 0; i < numPositions; ++i) {
+            pos[i * 3] = mypositions[i].x;
+            pos[i * 3 + 1] = mypositions[i].y;
+            pos[i * 3 + 2] = mypositions[i].z;
+            normals[i * 3] = 0.0;
+            normals[i * 3 + 1] = 0.0;
+            normals[i * 3 + 2] = 1.0;
+        }
+
+        var geometry = new Cesium.Geometry({
+            attributes: {
+                position: new Cesium.GeometryAttribute({
+                    componentDatatype: Cesium.ComponentDatatype.DOUBLE, // not FLOAT
+                    componentsPerAttribute: 3,
+                    values: pos
+                }),
+                normal: new Cesium.GeometryAttribute({
+                    componentDatatype: Cesium.ComponentDatatype.FLOAT,
+                    componentsPerAttribute: 3,
+                    values: normals
+                })
+
+            },
+
+            // Don't need the following line if no vertices are shared.
+            //indices: new Uint32Array([0, 1, 2, 3, 4, 5]),
+            primitiveType: Cesium.PrimitiveType.TRIANGLES,
+            boundingSphere: Cesium.BoundingSphere.fromVertices(pos)
+        });
+
+        var myInstance = new Cesium.GeometryInstance({
+            geometry: geometry,
+            attributes: {
+                color: new Cesium.ColorGeometryInstanceAttribute(1, 0, 0,0.5),
+                show: new Cesium.ShowGeometryInstanceAttribute(true)
+            },
+        });
+
+        viewer.scene.primitives.add(new Cesium.Primitive({
+            geometryInstances: [myInstance],
+            asynchronous: false,
+            appearance: new Cesium.PerInstanceColorAppearance({
+                closed: true,
+                translucent: true
+            })
+        }));
+    </script>
+</body>
+</html>

@@ -8,9 +8,38 @@
 </head>
 <body>
     <script src="CesiumUnminified/Cesium.js"></script>
-    <div id="cesiumContainer"></div>
+    <div id="cesiumContainer" class="fullSize"></div>
+    <div id="loadingOverlay"><h1>Loading...</h1></div>
+    <div id="toolbar"></div>
     <script>
-        var viewer = new Cesium.Viewer('cesiumContainer');
+        var viewer = new Cesium.Viewer('cesiumContainer', {
+            animation: false,
+            baseLayerPicker: false,
+            fullscreenButton: false,
+            vrButton: false,
+            geocoder: false,
+            homeButton: false,
+            infoBox: false,
+            sceneModePicker: false,
+            selectionIndicator: false,
+            timeline: false,
+            navigationHelpButton: false,
+            navigationInstructionsInitiallyVisible: false,
+            scene3DOnly: false,
+            //useDefaultRenderLoop: false,
+            showRenderLoopErrors: false,
+            automaticallyTrackDataSourceClocks: false,
+            orderIndependentTranslucency: false,
+            shadows: false,
+        });
+        /*
+        var cylinder = new Cesium.CylinderGeometry({
+            length: 200000,
+            topRadius: 80000,
+            bottomRadius: 200000,
+        });
+        var geometry = Cesium.CylinderGeometry.createGeometry(cylinder);
+        */
         var greenCylinder = viewer.entities.add({
             name: 'Green cylinder with black outline',
             position: Cesium.Cartesian3.fromDegrees(-100.0, 40.0, 200000.0),
@@ -31,7 +60,10 @@
                 length: 400000.0,
                 topRadius: 0.0,
                 bottomRadius: 200000.0,
-                material: Cesium.Color.RED
+                slices:4,
+                material: Cesium.Color.RED.withAlpha(0.5),
+                outline: true,
+                outlineColor: Cesium.Color.RED
             }
         });
 

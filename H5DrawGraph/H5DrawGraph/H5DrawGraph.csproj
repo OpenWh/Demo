@@ -117,6 +117,7 @@
     <Content Include="Test\DrawTest12.html" />
     <Content Include="Test\DrawTest13.html" />
     <Content Include="Test\DrawTest14.html" />
+    <Content Include="Test\DrawTest15.html" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
