@@ -44,7 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HtmlPage1.html" />
-    <Content Include="Js\CylinderBufferGeometry.js" />
+    <Content Include="HtmlPage3.html" />
+    <Content Include="Js\ConvexGeometry.js" />
+    <Content Include="Js\PyramidBufferGeometry.js" />
+    <Content Include="Js\Detector.js" />
+    <Content Include="Js\OrbitControls.js" />
+    <Content Include="Js\stats.min.js" />
     <Content Include="Js\three.js" />
     <Content Include="Js\three.min.js" />
   </ItemGroup>

@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>three.js webgl - convex geometry</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+            font-family: Monospace;
+            background-color: #000;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        #info {
+            position: absolute;
+            color: #fff;
+            top: 0px;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+        }
+
+        a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="info"><a href="http://threejs.org" target="_blank">three.js</a> - ConvexGeometry</div>
+
+    <script src="Js/three.js"></script>
+    <script src="Js/OrbitControls.js"></script>
+    <script src="Js/ConvexGeometry.js"></script>
+    <script src="Js/Detector.js"></script>
+    <script src="Js/stats.min.js"></script>
+
+    <script>
+
+        if (!Detector.webgl) Detector.addGetWebGLMessage();
+
+        var group, camera, scene, renderer;
+
+        init();
+        animate();
+
+        function init() {
+            scene = new THREE.Scene();
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            //renderer.setClearColor(0xFFFFFF);
+            document.body.appendChild(renderer.domElement);
+
+            // camera
+            camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.set(15, 20, 30);
+            scene.add(camera);
+
+            // controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.minDistance = 20;//相机最近距离
+            controls.maxDistance = 80;//相机最远距离
+            controls.maxPolarAngle = Math.PI / 2;//相机旋转的角度限制
+
+            scene.add(new THREE.AmbientLight(0x222222));
+
+            var light = new THREE.PointLight(0xffffff, 1);
+            camera.add(light);
+
+            scene.add(new THREE.AxisHelper(50));//辅助显示坐标轴
+            for (var i = 0; i < 1; i++) {
+                group = new THREE.Group();
+                scene.add(group);
+
+                var Geometry = new THREE.PyramidBufferGeometry(2, 60, 10);
+
+                //var faceColors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00];
+                //faceColors.forEach(function (color, idx) { Geometry.faces[idx].color.setHex(color); });
+
+                var meshMaterial = new THREE.MeshBasicMaterial({
+                    //vertexColors: THREE.FaceColors,
+                    color: 0xff0000,
+                    wireframe: true,
+                });
+
+                mesh = new THREE.Mesh(Geometry, meshMaterial);
+
+                group.add(mesh);
+                group.position.x = 0;
+                group.position.y = 5;
+            }
+
+            window.addEventListener('resize', onWindowResize, false);
+
+        }
+
+        function randomPoint() {
+            return new THREE.Vector3(THREE.Math.randFloat(-1, 1), THREE.Math.randFloat(-1, 1), THREE.Math.randFloat(-1, 1));
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            //group.rotation.y += 0.005;
+            render();
+
+        }
+
+        function render() {
+            renderer.render(scene, camera);
+        }
+
+    </script>
+
+</body>
+</html>
