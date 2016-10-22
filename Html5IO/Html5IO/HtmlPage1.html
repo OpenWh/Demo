@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <input id="file" type="file" />
+
+    <script>
+        function fileselect(e) {
+            e = e || window.event;
+            var files = this.files;
+
+            var reader = new FileReader();
+            reader.onload = (function (file) {
+                return function (e) {
+                    var div = document.createElement('div');
+                    div.className = "text"
+                    div.innerHTML = this.result;
+
+                    //p.insertBefore(div, null);
+                };
+            })(files[0]);
+            //读取文件内容
+            reader.readAsText(files[0]);
+        }
+
+        document.getElementById('file').onchange = fileselect;
+    </script>
+</body>
+</html>

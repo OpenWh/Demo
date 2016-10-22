@@ -51,7 +51,6 @@
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
-            //renderer.setClearColor(0xFFFFFF);
             document.body.appendChild(renderer.domElement);
 
             // camera
@@ -61,37 +60,68 @@
 
             // controls
             controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.minDistance = 20;//相机最近距离
-            controls.maxDistance = 80;//相机最远距离
-            controls.maxPolarAngle = Math.PI / 2;//相机旋转的角度限制
+            controls.minDistance = 20;
+            controls.maxDistance = 50;
+            controls.maxPolarAngle = Math.PI;
 
             scene.add(new THREE.AmbientLight(0x222222));
 
             var light = new THREE.PointLight(0xffffff, 1);
             camera.add(light);
 
-            scene.add(new THREE.AxisHelper(50));//辅助显示坐标轴
-            for (var i = 0; i < 1; i++) {
-                group = new THREE.Group();
-                scene.add(group);
+            scene.add(new THREE.AxisHelper(20));
 
-                var Geometry = new THREE.PyramidBufferGeometry(2, 60, 10);
+            //
 
-                //var faceColors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00];
-                //faceColors.forEach(function (color, idx) { Geometry.faces[idx].color.setHex(color); });
+            var loader = new THREE.TextureLoader();
+            var texture = loader.load('textures/sprites/disc.png');
 
-                var meshMaterial = new THREE.MeshBasicMaterial({
-                    //vertexColors: THREE.FaceColors,
-                    color: 0xff0000,
-                    wireframe: true,
-                });
+            group = new THREE.Group();
+            scene.add(group);
 
-                mesh = new THREE.Mesh(Geometry, meshMaterial);
+            // points
 
-                group.add(mesh);
-                group.position.x = 0;
-                group.position.y = 5;
+            var pointsGeometry = new THREE.PyramidGeometry(4 / 3, 120, 5);
+
+            for (var i = 0; i < pointsGeometry.vertices.length; i++) {
+
+                //pointsGeometry.vertices[ i ].add( randomPoint().multiplyScalar( 2 ) ); // wiggle the points
+
             }
+
+            var pointsMaterial = new THREE.PointsMaterial({
+
+                color: 0x0080ff,
+                map: texture,
+                size: 1,
+                alphaTest: 0.5
+
+            });
+
+            var points = new THREE.Points(pointsGeometry, pointsMaterial);
+            group.add(points);
+
+            // convex hull
+
+            var meshMaterial = new THREE.MeshLambertMaterial({
+                color: 0xffffff,
+                opacity: 0.5,
+                transparent: true
+            });
+
+            var meshGeometry = new THREE.ConvexGeometry(pointsGeometry.vertices);
+
+            mesh = new THREE.Mesh(meshGeometry, meshMaterial);
+            mesh.material.side = THREE.BackSide; // back faces
+            mesh.renderOrder = 0;
+            group.add(mesh);
+
+            mesh = new THREE.Mesh(meshGeometry, meshMaterial.clone());
+            mesh.material.side = THREE.FrontSide; // front faces
+            mesh.renderOrder = 1;
+            group.add(mesh);
+
+            //
 
             window.addEventListener('resize', onWindowResize, false);
 

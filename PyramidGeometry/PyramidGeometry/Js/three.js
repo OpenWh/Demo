@@ -27929,6 +27929,27 @@
     PyramidBufferGeometry.prototype = Object.create(BufferGeometry.prototype);
     PyramidBufferGeometry.prototype.constructor = PyramidBufferGeometry;
 
+
+    //自定义四棱锥
+    //wh edit 2016/10/22
+    function PyramidGeometry(proportion, angle, height) {
+        Geometry.call(this);
+
+        this.type = 'PyramidGeometry';
+
+        this.parameters = {
+            proportion: proportion,
+            angle: angle,
+            height: height,
+        };
+
+        this.fromBufferGeometry(new PyramidBufferGeometry(proportion, angle, height));
+        this.mergeVertices();
+    }
+
+    PyramidGeometry.prototype = Object.create(Geometry.prototype);
+    PyramidGeometry.prototype.constructor = PyramidGeometry;
+
     /**
 	 * @author mrdoob / http://mrdoob.com/
 	 */
@@ -28177,6 +28198,7 @@
         CylinderGeometry: CylinderGeometry,
         CylinderBufferGeometry: CylinderBufferGeometry,
         PyramidBufferGeometry: PyramidBufferGeometry,
+        PyramidGeometry: PyramidGeometry,
         CircleBufferGeometry: CircleBufferGeometry,
         CircleGeometry: CircleGeometry,
         BoxBufferGeometry: BoxBufferGeometry,
@@ -33003,19 +33025,19 @@
 							);
 
                             break;
+
+                        case 'PyramidGeometry':
                         case 'PyramidBufferGeometry':
+
                             geometry = new Geometries[data.type](
-								data.radiusTop,
-								data.radiusBottom,
-								data.height,
-								data.radialSegments,
-								data.heightSegments,
-								data.openEnded,
-								data.thetaStart,
-								data.thetaLength
+								data.proportion,
+								data.angle,
+								data.height
 							);
 
                             break;
+
+
                         case 'ConeGeometry':
                         case 'ConeBufferGeometry':
 
@@ -42051,6 +42073,7 @@
     exports.CylinderGeometry = CylinderGeometry;
     exports.CylinderBufferGeometry = CylinderBufferGeometry;
     exports.PyramidBufferGeometry = PyramidBufferGeometry;
+    exports.PyramidGeometry = PyramidGeometry;
     exports.CircleBufferGeometry = CircleBufferGeometry;
     exports.CircleGeometry = CircleGeometry;
     exports.BoxBufferGeometry = BoxBufferGeometry;
