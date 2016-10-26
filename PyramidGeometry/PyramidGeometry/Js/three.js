@@ -27717,8 +27717,8 @@
 
         this.parameters = {
             proportion: proportion,
-            angle, angle,
-                height: height,
+            angle: angle,
+            height: height,
         };
 
         if (proportion === 1 && proportion === undefined && proportion > 0

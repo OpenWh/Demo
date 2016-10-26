@@ -76,12 +76,10 @@
             var loader = new THREE.TextureLoader();
             var texture = loader.load('textures/sprites/disc.png');
 
-            group = new THREE.Group();
-            scene.add(group);
-
             // points
 
-            var pointsGeometry = new THREE.PyramidGeometry(4 / 3, 120, 5);
+            var pointsGeometry = new THREE.PyramidGeometry(4 / 3, 80, 10);
+            //var myGeometry = new THREE.CylinderGeometry(0, 5, 10, 4, 1, true);
 
             for (var i = 0; i < pointsGeometry.vertices.length; i++) {
 
@@ -89,38 +87,27 @@
 
             }
 
-            var pointsMaterial = new THREE.PointsMaterial({
+            var meshMaterial = [
+                new THREE.MeshLambertMaterial({ color: 0xff3333, opacity: 0.4, transparent: true, }),
+                new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true })
+            ]
 
-                color: 0x0080ff,
-                map: texture,
-                size: 1,
-                alphaTest: 0.5
+            var group = THREE.SceneUtils.createMultiMaterialObject(pointsGeometry, meshMaterial);
 
-            });
-
-            var points = new THREE.Points(pointsGeometry, pointsMaterial);
-            group.add(points);
-
-            // convex hull
-
-            var meshMaterial = new THREE.MeshLambertMaterial({
-                color: 0xffffff,
-                opacity: 0.5,
-                transparent: true,
-                //wireframe: true
-            });
-
-            var meshGeometry = new THREE.ConvexGeometry(pointsGeometry.vertices);
-
-            mesh = new THREE.Mesh(meshGeometry, meshMaterial);
+            mesh = new THREE.Mesh(pointsGeometry, meshMaterial[0]);
             mesh.material.side = THREE.BackSide; // back faces
             mesh.renderOrder = 0;
             group.add(mesh);
 
-            mesh = new THREE.Mesh(meshGeometry, meshMaterial.clone());
+            mesh = new THREE.Mesh(pointsGeometry, meshMaterial[0].clone());
             mesh.material.side = THREE.FrontSide; // front faces
             mesh.renderOrder = 1;
             group.add(mesh);
+
+
+
+
+            scene.add(group);
 
             //
 
